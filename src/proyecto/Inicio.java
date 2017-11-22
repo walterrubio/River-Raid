@@ -1,6 +1,5 @@
 package proyecto;
 
-import java.applet.AudioClip;
 import java.awt.*;
 import java.awt.Image;
 import java.awt.event.*;
@@ -12,19 +11,20 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import static proyecto.TiposLetras.letras;
 import static proyecto.bounds.limite;
+import static proyecto.bounds.xbutton;
 
 public class Inicio extends JPanel implements bounds,TiposLetras{  
     Instrucciones i;
     Image portada;
     JButton b_jugar, b_inst, b_top, b_creditos, b_salir;
-
+   
     public Inicio(){
         
         setLayout(null);       
         i = new Instrucciones();       
         super.setLocation(0, 0);
         super.setSize(700,500);
-      
+        
         try{
             portada = ImageIO.read(new File("src/imagenes/riverraid.png"));
         }
@@ -96,7 +96,7 @@ public class Inicio extends JPanel implements bounds,TiposLetras{
                  Inicio.super.add(inst);
                  Inicio.super.revalidate();
                  Inicio.super.repaint();
-
+                 
              } 
              if(ae.getSource()==b_top){
                  Top t = null;
@@ -172,6 +172,52 @@ public class Inicio extends JPanel implements bounds,TiposLetras{
              }
         }
     };
+    /*ActionListener escuchante = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            
+              if(ae.getSource()==b_jugar){                 
+                  PedirUsuario ped = new PedirUsuario();
+                  
+                  Inicio.super.removeAll();
+                  Inicio.super.add(ped);
+                  Inicio.super.revalidate();
+                  Inicio.super.repaint();
+                  
+              }
+              if(ae.getSource()==b_inst){                 
+                  Instrucciones inst = new Instrucciones();
+                  
+                  Inicio.super.removeAll();
+                  Inicio.super.add(inst);
+                  Inicio.super.revalidate();
+                  Inicio.super.repaint();
+                  
+              } 
+              if(ae.getSource()==b_top){
+                  Top t = new Top();
+                  
+                  Inicio.super.removeAll();
+                  Inicio.super.add(t);
+                  Inicio.super.revalidate();
+                  Inicio.super.repaint();                   
+                  
+              } 
+              if(ae.getSource()==b_creditos){
+                  Creditos cred = new Creditos();
+                  
+                  Inicio.super.removeAll();
+                  Inicio.super.add(cred);
+                  Inicio.super.revalidate();
+                  Inicio.super.repaint();                  
+                  
+              }
+              if(ae.getSource()==b_salir){
+                  System.exit(0);
+              }                                 
+        }
+        
+    };   */
 }
 
 class PedirUsuario extends JPanel{
@@ -225,8 +271,6 @@ class PedirUsuario extends JPanel{
         add(t_usu);
         add(b_aceptar);
         add(b_volver);   
-        CrearDoc doc1=new CrearDoc();
-  
     }
 
     @Override
@@ -235,6 +279,7 @@ class PedirUsuario extends JPanel{
         Graphics2D g2 = (Graphics2D)g;
         g2.drawImage(portada, 0, 0, this);
     }   
+  
     ActionListener escuchante = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent ae) {
@@ -246,6 +291,13 @@ class PedirUsuario extends JPanel{
                 Framejug jugabilidad=new Framejug();
                 jugabilidad.correr();
                 System.out.println(user);
+                
+                try {
+                    CrearDoc sd=new CrearDoc();
+                    sd.Rellenar(user);
+                } catch (IOException ex) {
+                    Logger.getLogger(PedirUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 
                 
             }
@@ -260,10 +312,5 @@ class PedirUsuario extends JPanel{
             }
         }
     };  
-    
-public String User() throws IOException{
-    String user = null;
-    System.out.println(user);
-    return user;
-}
+
 }

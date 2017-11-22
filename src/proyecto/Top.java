@@ -15,6 +15,7 @@ public class Top extends JPanel{
     JLabel usu;
     PedirUsuario p;
     JButton b_volver;
+    /*private String[] datosd=null;*/
     public Top() throws IOException{
         
         setLayout(null);
@@ -29,9 +30,16 @@ public class Top extends JPanel{
             System.err.println("No se encontro la imagen: "+e);
         }
 
-        usu = new JLabel(p.t_usu.getText());
+        //usu = new JLabel(p.t_usu.getText());
+        usu=new JLabel();
         usu.setBounds(255, 205, 200, 20);
-        
+        CrearDoc doc1=new CrearDoc();
+        doc1.Imprimirlineas();
+        usu.add(doc1.getTexto());
+        /*datosd=doc1.Imprimirlineas();
+        for (int i = 0; i < doc1.Contarlineas(); i++) {
+            System.out.println(datosd[i]);
+        }*/
         b_volver = new JButton("Volver");
         b_volver.setBounds(25, 420, 70, 35);
         b_volver.setBackground(Color.YELLOW);
