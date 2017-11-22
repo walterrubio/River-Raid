@@ -101,7 +101,10 @@ public class CrearDoc {
             fw.close();
         return Datoslineas;  
     }
-
+    /**
+     * 
+     * @return Devuelve el JTextArea 
+     */
     public JTextArea getTexto() {
         return texto;
     }

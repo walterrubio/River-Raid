@@ -5,7 +5,10 @@ import java.awt.geom.Rectangle2D;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-
+/**
+ * Inicializa la posicion de la gasolina
+ * @author walter.rubio
+ */
 public class Gasolina {
     int posx;
     int posy;

@@ -7,12 +7,17 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
-
+/**
+ * Clase que genera el panel de los Creditos del juego
+ * @author walter.rubio y Jose Valduz
+ */
 public class Creditos extends JPanel implements TiposLetras{   
     JTextArea t_cred, t_cred2, t_cred3, t_cred4;
     JButton b_volver;
     Image portada;
-    
+    /**
+     * Inicializa el panel Creditos del juego
+     */
     public Creditos(){
         setLayout(null);
         super.setSize(700,500);
@@ -71,7 +76,6 @@ public class Creditos extends JPanel implements TiposLetras{
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
-        
         g2.drawImage(portada, 0, 0, this);
     }     
     ActionListener escuchante = new ActionListener() {
