@@ -1,18 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package proyecto;
 
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
-/**
- *
- * @author jose.valduz
- */
 public class Framejug extends JFrame{
 
     public Framejug() {
@@ -30,13 +21,8 @@ public class Framejug extends JFrame{
     }
     public void correr(){
         Jugar jug = new Jugar();
-        jug.t.start();
-
-        
+        jug.t.start();       
         add(jug);   
-        
-
         super.setVisible(true);
-    }
-    
+    }  
 }

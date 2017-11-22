@@ -16,8 +16,6 @@ public class Enemigo2 {
     public Enemigo2(int posx,int posy){
         this.posx=posx;
         this.posy=posy;
-        /*posy = 0;
-        posx = (int)(Math.random()*(495-144+1)+144);*/
         
         try{
             enem2 = ImageIO.read(new File("src/imagenes/enemm2.png"));
@@ -26,11 +24,6 @@ public class Enemigo2 {
             System.out.println("No se encontro la imagen");
         }  
     }
-    
-  /*  public Enemigo(int pox, int posy, JFrame frame )
-    {
-        frame
-    }*/
     Rectangle2D area(){
         return new Rectangle2D.Double(posx, posy, 55, 46);
     }

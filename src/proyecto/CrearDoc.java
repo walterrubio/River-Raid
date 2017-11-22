@@ -1,4 +1,3 @@
-
 package proyecto;
 
 import java.io.BufferedReader;
@@ -9,10 +8,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-/**
- *
- * @author jose.valduz
- */
 public class CrearDoc {
     String Archivo="Data.txt";
         

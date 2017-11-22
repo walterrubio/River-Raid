@@ -14,44 +14,37 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-
 public class Jugar extends JPanel{
-/*String Datos="";*/
-    float cont_tiempo;
+   
     Image pastoi, pastod, mar, barragas;    
     Jugador j;
     Enemigo e;
     Enemigo2 e2;    
     Gasolina gas;
     CargarGas cg;
-    CrearDoc Guardar;
     Balas b;
     AudioClip s_expj, s_expe, s_shot, s_reload, s_expg;
     Timer t, tt, ttt;
     Random n;
-
+    CrearDoc Guardar;
+    float cont_tiempo;
     
     ActionListener escuchante3 = new ActionListener() {
-
         @Override
-        public void actionPerformed(ActionEvent ee) {
-            
+        public void actionPerformed(ActionEvent ee) {           
                 if(e.posx>=144)
                     e.posx-=10;
                 
                 if(e.posx<=143){
                     ttt.stop();
-                    tt.start();}
-            
+                    tt.start();}       
               repaint(); 
         }
     };    
     
     ActionListener escuchante2 = new ActionListener() {
-
         @Override
-        public void actionPerformed(ActionEvent ee) {
-                
+        public void actionPerformed(ActionEvent ee) {               
                 if(e.posx<=495)
                     e.posx+=10;
                 
@@ -62,8 +55,7 @@ public class Jugar extends JPanel{
                 if(e2.posx<0){
                     e2.posx=610;
                     e2.posy=Aleatorio2();
-                }                
-            
+                }                           
               repaint(); 
         }
     };
@@ -78,18 +70,12 @@ public class Jugar extends JPanel{
             boolean bg = b.area().intersects(gas.area());
            
             e.posy+=5;
+            e2.posx-=5;             
             b.posy-=20;
             gas.posy++;
             j.gasolina-=2; 
-            cont_tiempo+=0.02;
-            
-            e2.posx-=5;            
-            
-            System.out.println("Vidas"+j.num_vidas);
-            System.out.println("Gas"+j.gasolina);
-            System.out.println("Tiempo"+cont_tiempo);            
-            //System.out.println(j.gasolina);
-            
+            cont_tiempo+=0.02;          
+         
             if(e.posy>=500){              
                e.posy=-50;
                e.posx = Aleatorio();                                                    
@@ -141,10 +127,10 @@ public class Jugar extends JPanel{
             if(e.posy==5)   
                 tt.start();
             
-            if(j.gasolina<0){ //------------------------------------------
-                j.num_vidas--;//------------------------------------------
-                j.gasolina=1000;//------------------------------------------
-                s_expj.play();//------------------------------------------
+            if(j.gasolina<0){
+                j.num_vidas--;
+                j.gasolina=1000;
+                s_expj.play();
             }
             
             if(j.gasolina>450)
@@ -167,11 +153,11 @@ public class Jugar extends JPanel{
                 System.exit(0);                
             }
 
-            if(cont_tiempo>=3){
+            if(cont_tiempo>=60){
                 JOptionPane.showMessageDialog(null, "Ganaste: "+j.puntuacion+"pts");                                                
             }
             
-                        if(j.num_vidas==0){
+                if(j.num_vidas==0){
                 try {
                     PedirUsuario user= new PedirUsuario();
                     String Usua;
@@ -183,13 +169,9 @@ public class Jugar extends JPanel{
                     Guardar.Rellenar(datof);
                 } catch (IOException ex) {
                     Logger.getLogger(Jugar.class.getName()).log(Level.SEVERE, null, ex);
-                }
-             
-             
+                }                      
             System.exit(0);
             }
-
-
             repaint();
         }
     };
@@ -264,11 +246,8 @@ public class Jugar extends JPanel{
         g2.drawImage(e2.enem2, e2.posx, e2.posy, this);          
         g2.fill(b.area());
         g2.drawImage(gas.fuel, gas.posx, gas.posy, this);  
-
-        
-        
-
     }
+    
     public int Aleatorio(){
         int aleatorio=(int)(Math.random()*(495-144+1)+144);
         return aleatorio;
@@ -282,7 +261,6 @@ public class Jugar extends JPanel{
         @Override
         public void keyTyped(KeyEvent ke) {
         }
-
         @Override
         public void keyPressed(KeyEvent ke) {
             if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
@@ -312,37 +290,11 @@ public class Jugar extends JPanel{
                 e.posy+=10;
                 gas.posy+=5;
             } 
-            
-            /*if(j.num_vidas==0){
-                try {
-                    PedirUsuario user= new PedirUsuario();
-                    String Usua=user.User();
-                    Guardar=new CrearDoc();
-                    int puntu =j.puntuacion;
-                    String puntuacion=String.valueOf(puntu);
-                    String datof=Usua+"-"+puntuacion;
-                    Guardar.Rellenar(datof);
-                } catch (IOException ex) {
-                    Logger.getLogger(Jugar.class.getName()).log(Level.SEVERE, null, ex);
-                }
-             
-             
-            System.exit(0);
-            }*/
             repaint();
         }
         @Override
         public void keyReleased(KeyEvent ke) {
         }
     };
-  /*  public void GuardarDatos(String datos){
-        //debe ser cuando haya terminado el juego, ahora solo debe guardarse en un documento, hacer metodo en el que al terminar el juego lea el ultimo puntaje, y si es mayor los organize y lo añada
-        Jugador j=new Jugador();
-        Inicio i=new Inicio();
-        String Datos;
-        Datos=datos+"-"+j.getPuntuacion();
-        System.out.println(Datos);
-    }*/
-
 }
 
